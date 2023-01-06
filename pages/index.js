@@ -9,7 +9,7 @@ const Banner = ({ purpose, title1, title2, desc1, desc2, buttonText, linkName, i
       <Text color="gray.500" fontSize="sm" fontWeight="bold" >{purpose}</Text>
       <Text color="gray.500" fontSize="xl" fontWeight="medium" >{title1} <br />{title2}</Text>
       <Text fontSize="lg" paddingTop="3" color="gray.700">{desc1} <br /> {desc2} </Text>
-      <Button fontSize="xl" bg="blue.300" color="white">
+      <Button fontSize="xl">
         <Link href={linkName}> {buttonText} </Link>
       </Button>
     </Box>
@@ -31,6 +31,9 @@ export default function Home() {
         linkName="/search?purpose=for-rent"
         imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/145426814/33973352624c48628e41f2ec460faba4"
       />
+      <Flex flexWrap="wrap">
+        
+      </Flex>
       <Banner
       purpose='BUY A HOME'
       title1=' Find, Buy & Own Your'
