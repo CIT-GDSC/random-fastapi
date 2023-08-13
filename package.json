@@ -1,31 +1,22 @@
 {
   "name": "emtext-real-estate",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@chakra-ui/react": "^2.4.6",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@next/font": "13.1.1",
-    "axios": "^1.2.2",
-    "eslint": "8.31.0",
-    "eslint-config-next": "13.1.1",
-    "framer-motion": "^8.1.9",
-    "millify": "^5.0.1",
-    "next": "13.1.1",
-    "nprogress": "^0.2.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-horizontal-scrolling-menu": "^3.2.3",
-    "react-icons": "^4.7.1"
-  },
-  "devDependencies": {
-    "babel-plugin-styled-components": "^2.0.7"
+    "body-parser": "^1.20.2",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^7.4.3"
   }
 }
