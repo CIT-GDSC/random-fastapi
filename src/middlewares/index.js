@@ -1,7 +1,11 @@
 import expressAsyncHandler from "express-async-handler";
 
 
-const errorHandler = expressAsyncHandler(async (req, res, next, err) => {
-    statusCode = statusCode ? statusCode : 500;
-    
+export const errorHandler = expressAsyncHandler(async (req, res, next, err) => {
+    statusCode = res.statusCode ? res.statusCode : 500;
+    res.status(statusCode);
+    res.json({
+        message: err.message,
+        stack : err.stack
+    });
 });

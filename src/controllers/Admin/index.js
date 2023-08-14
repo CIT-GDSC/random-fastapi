@@ -26,17 +26,37 @@ export const createAdmin = expressAsyncHandler(async (req, res) => {
 
 
 export const signInAdmin = expressAsyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-    if(!email || !password){
-        res.sendStatus(400);
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) {
+            res.sendStatus(400);
+        }
+        const admin = await findByEmail(email).select('+authentication.salt +authentication.password')
+        if (!admin) {
+            res.sendStatus(400);
+        }
+        const expectedHash = authentication(admin.authentication.salt, password);
+        if (admin.authentication.password !== expectedHash) {
+            return res.sendStatus(403);
+        }
+        const salt = genarateSaltedString();
+        user.authentication.sessionToken = authentication(salt, user._id.toString());
+        res.cookie('sessionToken', user.authentication.sessionToken, { httpOnly: true });
+        await admin.save()
+        return res.sendStatus(200).json(admin);
+    } catch (error) {
+        res.sendStatus(500)
     }
-    const admin = await findByEmail(email).select('+authentication.salt +authentication.password')
-    if (!admin) {
-        res.sendStatus(400);
-    }
-    const expectedHash = authentication(admin.authentication.salt, password);
-    if (admin.authentication.password !== expectedHash) {
-        return res.sendStatus(403);
-    }
+});
 
+export const signOutAdmin = expressAsyncHandler(async (req, res) => {
+    try {
+        const { sessionToken } = req.cookies;
+        const admin = await findBySessionToken(sessionToken);
+        admin.authentication.sessionToken = null;
+        await admin.save();
+        return res.sendStatus(200);
+    } catch (error) {
+        res.sendStatus(500);
+    }
 });
